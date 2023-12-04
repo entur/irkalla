@@ -43,7 +43,7 @@ Inspired by: https://github.com/fabric8io/ipaas-quickstarts/
         <camel.version>3.21.2</camel.version>
         <entur.helpers.version>1.100</entur.helpers.version>
         <netex-java-model.version>1.0.14</netex-java-model.version>
-        <netex-parser-java.version>2.2.0</netex-parser-java.version>
+        <netex-parser-java.version>2.3.0</netex-parser-java.version>
         <wololo.version>0.18.1</wololo.version>
         <entur.google.pubsub.emulator.download.skip>false</entur.google.pubsub.emulator.download.skip>
         <avro.version>1.11.3</avro.version>
