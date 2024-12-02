@@ -47,7 +47,7 @@ Inspired by: https://github.com/fabric8io/ipaas-quickstarts/
         <wololo.version>0.18.1</wololo.version>
         <entur.google.pubsub.emulator.download.skip>false</entur.google.pubsub.emulator.download.skip>
         <avro.version>1.12.0</avro.version>
-        <confluent-kafka-client.version>6.2.15</confluent-kafka-client.version>
+        <confluent-kafka-client.version>7.8.0</confluent-kafka-client.version>
     </properties>
 
     <dependencyManagement>
