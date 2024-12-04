@@ -40,7 +40,7 @@ Inspired by: https://github.com/fabric8io/ipaas-quickstarts/
 
     <properties>
         <java.version>21</java.version>
-        <camel.version>4.4.4</camel.version>
+        <camel.version>4.9.0</camel.version>
         <entur.helpers.version>2.34</entur.helpers.version>
         <netex-java-model.version>2.0.15</netex-java-model.version>
         <netex-parser-java.version>3.1.29</netex-parser-java.version>
