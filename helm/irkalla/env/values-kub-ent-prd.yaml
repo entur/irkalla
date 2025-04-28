@@ -16,6 +16,17 @@ configMap:
       audience: https://ror.api.entur.io
     partner:
       url: https://partner.entur.org/
+
+    client:
+      clientId: VN3qfO1Ez1iebWzzziA6jigzTsMZ9ecn
+      tokenUri: https://internal.entur.org/oauth/token
+      audience: https://ror.api.entur.io
+  baba:
+    service: http://baba.entur.internal
+
+  roleAssignmentExtractor: baba
+
+
   blobstoreName: ror-irkalla-prd
   kafka:
     brokers: entur-kafka-prod-ext-entur-prod.aivencloud.com:14019
