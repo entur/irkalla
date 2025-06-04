@@ -17,6 +17,15 @@ configMap:
       audience: https://ror.api.dev.entur.io
     partner:
       url: https://partner.dev.entur.org/
+    client:
+      clientId: BfTrdg7DoA0e1BZmGuqciTWaf4rTYf9x
+      tokenUri: https://internal.dev.entur.org/oauth/token
+      audience: https://ror.api.dev.entur.io
+  baba:
+    service: http://baba.dev.entur.internal
+
+  roleAssignmentExtractor: baba
+
   blobstoreName: ror-irkalla-dev
   kafka:
     brokers: entur-kafka-test-ext-entur-test.aivencloud.com:11877
