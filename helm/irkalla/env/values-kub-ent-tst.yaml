@@ -16,6 +16,17 @@ configMap:
       audience: https://ror.api.staging.entur.io
     partner:
       url: https://partner.staging.entur.org/
+
+    client:
+      clientId: O6wwOCbzHnBSHU1zfoCCMvOFl5IZrqTa
+      tokenUri: https://internal.staging.entur.org/oauth/token
+      audience: https://ror.api.staging.entur.io
+  baba:
+    service: http://baba.staging.entur.internal
+
+  roleAssignmentExtractor: baba
+
+
   blobstoreName: ror-irkalla-tst
   kafka:
     brokers: entur-kafka-test-ext-entur-test.aivencloud.com:11877
