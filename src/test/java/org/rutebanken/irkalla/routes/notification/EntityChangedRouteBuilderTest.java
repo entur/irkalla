@@ -17,7 +17,7 @@ import java.time.Instant;
 
 @SpringBootTest
 @CamelSpringBootTest
-@ActiveProfiles(value = {"default",  "in-memory-blobstore", "google-pubsub-emulator", "test","google-pubsub-autocreate"}, inheritProfiles = false)
+@ActiveProfiles(value = {"default", "in-memory-blobstore", "test", "google-pubsub-autocreate"}, inheritProfiles = false)
 public class EntityChangedRouteBuilderTest extends RouteBuilderIntegrationTestBase {
 
     @Produce("google-pubsub:{{irkalla.pubsub.project.id}}:ror.tiamat.changelog")
