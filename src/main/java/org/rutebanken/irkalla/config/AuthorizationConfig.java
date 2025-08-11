@@ -16,16 +16,22 @@
 
 package org.rutebanken.irkalla.config;
 
+import org.entur.oauth2.AuthorizedWebClientBuilder;
 import org.entur.oauth2.JwtRoleAssignmentExtractor;
+import org.entur.ror.permission.RemoteBabaRoleAssignmentExtractor;
 import org.rutebanken.helper.organisation.RoleAssignmentExtractor;
 import org.rutebanken.helper.organisation.authorization.AuthorizationService;
 import org.rutebanken.helper.organisation.authorization.DefaultAuthorizationService;
 import org.rutebanken.helper.organisation.authorization.FullAccessAuthorizationService;
 import org.rutebanken.irkalla.security.IrkallaAuthorizationService;
 import org.rutebanken.irkalla.security.DefaultIrkallaAuthorizationService;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.autoconfigure.security.oauth2.client.OAuth2ClientProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 /**
  * Configure authorization.
@@ -33,9 +39,43 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AuthorizationConfig {
 
+    @ConditionalOnProperty(
+            value = "irkalla.security.role.assignment.extractor",
+            havingValue = "jwt",
+            matchIfMissing = true
+    )
     @Bean
-    public RoleAssignmentExtractor roleAssignmentExtractor() {
+    public RoleAssignmentExtractor jwtRoleAssignmentExtractor() {
         return new JwtRoleAssignmentExtractor();
+    }
+
+    @ConditionalOnProperty(
+            value = "irkalla.security.role.assignment.extractor",
+            havingValue = "baba"
+    )
+    @Bean
+    public RoleAssignmentExtractor babaRoleAssignmentExtractor(
+            @Qualifier("internalWebClient") WebClient webClient,
+            @Value("${user.permission.rest.service.url}") String url
+    ) {
+        return new RemoteBabaRoleAssignmentExtractor(webClient, url);
+    }
+
+    @ConditionalOnProperty(
+            value = "irkalla.security.role.assignment.extractor",
+            havingValue = "baba"
+    )
+    @Bean("internalWebClient")
+    WebClient internalWebClient(
+            WebClient.Builder webClientBuilder,
+            OAuth2ClientProperties properties,
+            @Value("${ror.oauth2.client.audience}") String audience
+    ) {
+        return new AuthorizedWebClientBuilder(webClientBuilder)
+                .withOAuth2ClientProperties(properties)
+                .withAudience(audience)
+                .withClientRegistrationId("internal")
+                .build();
     }
 
 
