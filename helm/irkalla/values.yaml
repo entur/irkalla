@@ -7,6 +7,9 @@ common:
   service:
     internalPort: 8080
   container:
+    envFrom:
+      - secretRef:
+          name: auth-internal-credentials
     image: <+artifacts.primary.image>
     cpu: 0.1
     memory: 750
