@@ -43,7 +43,7 @@ Inspired by: https://github.com/fabric8io/ipaas-quickstarts/
         <camel.version>4.4.5</camel.version>
         <entur.helpers.version>5.47.0</entur.helpers.version>
         <netex-java-model.version>2.0.15</netex-java-model.version>
-        <netex-parser-java.version>3.1.64</netex-parser-java.version>
+        <netex-parser-java.version>3.1.65</netex-parser-java.version>
         <wololo.version>0.18.1</wololo.version>
         <avro.version>1.12.1</avro.version>
         <confluent-kafka-client.version>6.2.15</confluent-kafka-client.version>
