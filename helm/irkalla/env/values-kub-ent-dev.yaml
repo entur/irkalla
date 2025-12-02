@@ -12,11 +12,9 @@ configMap:
   tiamatUrl: http://tiamat.dev.entur.internal
 
   auth0:
-    ror:
-      url: https://ror-entur-dev.eu.auth0.com/
-      audience: https://ror.api.dev.entur.io
     partner:
       url: https://partner.dev.entur.org/
+      audience: https://api.dev.entur.io,https://ror.api.dev.entur.io
     client:
       clientId: BfTrdg7DoA0e1BZmGuqciTWaf4rTYf9x
       tokenUri: https://internal.dev.entur.org/oauth/token

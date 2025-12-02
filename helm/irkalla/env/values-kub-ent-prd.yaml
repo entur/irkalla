@@ -11,11 +11,9 @@ configMap:
   tiamatUrl: http://tiamat.prd.entur.internal
 
   auth0:
-    ror:
-      url: https://auth2.entur.org/
-      audience: https://ror.api.entur.io
     partner:
       url: https://partner.entur.org/
+      audience: https://api.entur.io,https://ror.api.entur.io
 
     client:
       clientId: VN3qfO1Ez1iebWzzziA6jigzTsMZ9ecn
