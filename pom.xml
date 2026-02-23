@@ -46,7 +46,7 @@ Inspired by: https://github.com/fabric8io/ipaas-quickstarts/
         <netex-parser-java.version>3.1.73</netex-parser-java.version>
         <wololo.version>0.18.1</wololo.version>
         <avro.version>1.12.1</avro.version>
-        <confluent-kafka-client.version>6.2.15</confluent-kafka-client.version>
+        <confluent-kafka-client.version>8.1.1</confluent-kafka-client.version>
     </properties>
 
     <dependencyManagement>
