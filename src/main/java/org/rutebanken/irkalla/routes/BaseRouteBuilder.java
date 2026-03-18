@@ -97,17 +97,8 @@ public abstract class BaseRouteBuilder extends RouteBuilder {
         log.warn("Exchange failed ({}: {}) . Redelivering the message locally, attempt {}/{}...", rootCauseType, rootCauseMessage, redeliveryCounter, redeliveryMaxCounter);
     }
 
-    protected void removeAllCamelHeaders(Exchange e) {
-        e.getIn().removeHeaders(Constants.CAMEL_ALL_HEADERS, GooglePubsubConstants.ACK_ID);
-
-    }
-
     protected void removeAllCamelHttpHeaders(Exchange e) {
         e.getIn().removeHeaders(Constants.CAMEL_ALL_HTTP_HEADERS, GooglePubsubConstants.ACK_ID);
-    }
-
-    protected String logDebugShowAll() {
-        return "log:" + getClass().getName() + "?level=DEBUG&showAll=true&multiline=true";
     }
 
     /**

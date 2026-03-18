@@ -28,9 +28,6 @@ public class StopPlaceResponse {
 
     public Data data;
 
-    public StopPlaceResponse() {
-    }
-
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class Data {
         public List<StopPlace> current;

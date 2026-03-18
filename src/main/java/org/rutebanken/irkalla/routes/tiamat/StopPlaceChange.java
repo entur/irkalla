@@ -128,11 +128,7 @@ public class StopPlaceChange {
 
         // Present top to bottom
         Collections.reverse(locationNames);
-        if (locationNames != null) {
-            return Joiner.on(", ").join(locationNames);
-        }
-
-        return null;
+        return locationNames.isEmpty() ? null : Joiner.on(", ").join(locationNames);
     }
 
     private void detectUpdateType() {
@@ -151,8 +147,6 @@ public class StopPlaceChange {
 
         checkForChanges(current.getNameAsString(), previousVersion.getNameAsString(), StopPlaceUpdateType.NAME);
         checkForChanges(current.stopPlaceType, previousVersion.stopPlaceType, StopPlaceUpdateType.TYPE);
-
-        // TODO do we need to verify magnitude of coord change? Seems to be small changes due to rounding.
         checkForChanges(current.geometry, previousVersion.geometry, StopPlaceUpdateType.COORDINATES);
 
         List<String> currentQuayIds = current.safeGetQuays().stream().map(q -> q.id).toList();

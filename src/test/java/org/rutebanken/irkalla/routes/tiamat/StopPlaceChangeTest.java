@@ -157,6 +157,14 @@ public class StopPlaceChangeTest {
     }
 
     @Test
+    public void getLocationReturnsNullWhenNoTopographicPlace() {
+        StopPlace current = new StopPlace();
+        current.topographicPlace = null;
+        StopPlaceChange change = new StopPlaceChange(CrudAction.CREATE, current, null);
+        Assertions.assertNull(change.getLocation());
+    }
+
+    @Test
     public void getLocationFormatsTopToBottom() {
         StopPlace current = new StopPlace();
         current.topographicPlace = topographicPlace("parent", topographicPlace("grandParent", topographicPlace("greatGrandParent", null)));
