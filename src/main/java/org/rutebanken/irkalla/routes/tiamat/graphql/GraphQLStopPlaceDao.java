@@ -56,6 +56,9 @@ public class GraphQLStopPlaceDao implements StopPlaceDao {
         StopPlaceResponse rsp =
                 restTemplate.exchange(tiamatUrl + tiamatGraphQLPath, HttpMethod.POST, createQueryHttpEntity(id, version), StopPlaceResponse.class).getBody();
 
+        if (rsp == null) {
+            return null;
+        }
         return toStopPlaceChange(crudAction, id, version, rsp);
     }
 

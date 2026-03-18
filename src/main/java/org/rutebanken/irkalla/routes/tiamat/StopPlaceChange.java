@@ -190,15 +190,8 @@ public class StopPlaceChange {
     }
 
     private String formatGeometry(GraphqlGeometry geometry) {
-        if ("Point".equals(geometry.type)) {
-            if (!CollectionUtils.isEmpty(geometry.legacyCoordinates)) {
-                List<Double> coordinates = geometry.legacyCoordinates.getFirst();
-                if (coordinates != null && coordinates.size() > 1) {
-                    Double x = coordinates.getFirst();
-                    Double y = coordinates.getLast();
-                    return "(" + x + "," + y + ")";
-                }
-            }
+        if ("Point".equals(geometry.type) && !CollectionUtils.isEmpty(geometry.coordinates) && geometry.coordinates.size() > 1) {
+            return "(" + geometry.coordinates.getFirst() + "," + geometry.coordinates.getLast() + ")";
         }
         return null;
     }

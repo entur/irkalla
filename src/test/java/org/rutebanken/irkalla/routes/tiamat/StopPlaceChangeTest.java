@@ -190,7 +190,7 @@ public class StopPlaceChangeTest {
     private StopPlace stopPlace(String name, double x, double y, String... quayIds) {
         StopPlace stopPlace = new StopPlace();
         stopPlace.name = new Name(name);
-        stopPlace.geometry = new GraphqlGeometry("Point", List.of(Arrays.asList(x, y)));
+        stopPlace.geometry = new GraphqlGeometry("Point", List.of(x, y));
 
         if (quayIds != null) {
             stopPlace.quays = Arrays.stream(quayIds).map(id -> new Quay(id, new Name(id), stopPlace.geometry)).collect(Collectors.toList());

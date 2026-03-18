@@ -103,6 +103,16 @@ class GraphqlStopPlaceDaoTest {
     }
 
     @Test
+    void testGetStopPlaceChange_returnsNullOnEmptyBody() {
+        server.expect(requestTo(TIAMAT_GRAPHQL_URL))
+                .andRespond(withSuccess("", MediaType.APPLICATION_JSON));
+
+        StopPlaceChange result = stopPlaceDao.getStopPlaceChange(CrudAction.CREATE, "NSR:StopPlace:1", 1L);
+
+        assertNull(result);
+    }
+
+    @Test
     void testGetStopPlaceChange_noPreviousVersionForVersion1() {
         server.expect(requestTo(TIAMAT_GRAPHQL_URL))
                 .andRespond(withSuccess("""

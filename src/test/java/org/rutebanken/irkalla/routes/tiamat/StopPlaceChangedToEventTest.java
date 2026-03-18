@@ -42,7 +42,7 @@ class StopPlaceChangedToEventTest {
         StopPlace current = stopPlace("NSR:StopPlace:1", 2L, "Oslo S", "onstreetBus");
         current.versionComment = "my comment";
         current.changedBy = "user1";
-        current.geometry = new GraphqlGeometry("Point", List.of(List.of(10.0, 59.0)));
+        current.geometry = new GraphqlGeometry("Point", List.of(10.0, 59.0));
 
         StopPlaceChange change = new StopPlaceChange(CrudAction.CREATE, current, null);
         CrudEvent event = mapper.toEvent(change);
@@ -61,7 +61,7 @@ class StopPlaceChangedToEventTest {
     @Test
     void convertsPointGeometry() {
         StopPlace current = stopPlace("NSR:StopPlace:1", 1L, "Stop", null);
-        current.geometry = new GraphqlGeometry("Point", List.of(List.of(10.5, 59.9)));
+        current.geometry = new GraphqlGeometry("Point", List.of(10.5, 59.9));
 
         CrudEvent event = mapper.toEvent(new StopPlaceChange(CrudAction.CREATE, current, null));
 

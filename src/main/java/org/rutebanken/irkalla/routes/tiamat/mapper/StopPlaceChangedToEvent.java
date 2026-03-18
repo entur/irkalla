@@ -23,8 +23,6 @@ import org.springframework.stereotype.Component;
 import org.wololo.geojson.Geometry;
 import org.wololo.geojson.Point;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class StopPlaceChangedToEvent {
@@ -53,12 +51,8 @@ public class StopPlaceChangedToEvent {
 
 
     private Geometry toGeometry(GraphqlGeometry graphqlGeometry) {
-
         if (graphqlGeometry != null && "Point".equals(graphqlGeometry.type)) {
-            List<Double> coordinates = new ArrayList<>();
-            graphqlGeometry.legacyCoordinates.forEach(coordList -> coordinates.addAll(coordList));
-
-            return new Point(coordinates.stream().mapToDouble(c -> c).toArray());
+            return new Point(graphqlGeometry.coordinates.stream().mapToDouble(c -> c).toArray());
         }
         return null;
     }

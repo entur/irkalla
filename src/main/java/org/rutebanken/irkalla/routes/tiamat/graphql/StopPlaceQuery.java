@@ -36,7 +36,7 @@ public class StopPlaceQuery {
               version
               validBetween { fromDate toDate }
               name { value }
-              geometry { type legacyCoordinates }
+              geometry { type coordinates }
               __typename
               topographicPlace {
                 topographicPlaceType
@@ -53,7 +53,7 @@ public class StopPlaceQuery {
                 quays {
                   id
                   name { value }
-                  geometry { type legacyCoordinates }
+                  geometry { type coordinates }
                 }
               }
             }""";
