@@ -16,23 +16,57 @@
 package org.rutebanken.irkalla.routes.tiamat.graphql;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class StopPlaceQuery {
 
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
     // Query size 1 should be sufficient when querying for fixed id and version
     private static final int DEFAULT_QUERY_SIZE = 1;
 
+    private static final String RESULT_DEFINITION = """
+            {
+              id
+              version
+              validBetween { fromDate toDate }
+              name { value }
+              geometry { type legacyCoordinates }
+              __typename
+              topographicPlace {
+                topographicPlaceType
+                name { value }
+                parentTopographicPlace {
+                  topographicPlaceType
+                  name { value }
+                }
+              }
+              versionComment
+              changedBy
+              ... on StopPlace {
+                stopPlaceType
+                quays {
+                  id
+                  name { value }
+                  geometry { type legacyCoordinates }
+                }
+              }
+            }""";
+
     public String operationName = "findStop";
 
     public Map<String, Object> variables = new HashMap<>();
+
+    public String query = """
+            query stopPlace($id: String, $size: Int, $currentVersion: Int, $previousVersion: Int) {
+              current: stopPlace(id: $id, size: $size, version: $currentVersion) %s
+              previous: stopPlace(id: $id, size: $size, version: $previousVersion) %s
+            }""".formatted(RESULT_DEFINITION, RESULT_DEFINITION);
 
     public StopPlaceQuery(String stopPlaceId, Long version) {
         variables.put("id", stopPlaceId);
@@ -45,61 +79,12 @@ public class StopPlaceQuery {
         variables.put("size", querySize);
     }
 
-    public String query = "query stopPlace($id: String, $size: Int, $currentVersion: Int, $previousVersion: Int) { " +
-                                  "current: stopPlace(id: $id, size: $size, version: $currentVersion) " + RESULT_DEFINITION +
-                                  " previous: stopPlace(id: $id, size: $size, version: $previousVersion) " + RESULT_DEFINITION +
-                                  "}";
-
-
+    @Override
     public String toString() {
         try {
-            ObjectMapper mapper = new ObjectMapper();
-            StringWriter writer = new StringWriter();
-            mapper.writeValue(writer, this);
-            return writer.toString();
-        } catch (IOException e) {
+            return MAPPER.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
     }
-
-    private static final String RESULT_DEFINITION = "{" +
-                                                            "id " +
-                                                            "version " +
-                                                            "validBetween {fromDate toDate}" +
-                                                            "name {" +
-                                                            "      value" +
-                                                            "    }" +
-                                                            "    geometry {" +
-                                                            "      type" +
-                                                            "      legacyCoordinates" +
-                                                            "    }" +
-                                                            "    __typename" +
-                                                            "       topographicPlace {" +
-                                                            "      topographicPlaceType" +
-                                                            "      name {" +
-                                                            "        value" +
-                                                            "      }" +
-                                                            "      parentTopographicPlace {" +
-                                                            "        topographicPlaceType" +
-                                                            "        name {" +
-                                                            "          value" +
-                                                            "        }" +
-                                                            "      }" +
-                                                            "    }" +
-                                                            "    versionComment "+
-                                                            "    changedBy "+
-                                                            "    ... on StopPlace {" +
-                                                            "    stopPlaceType " +
-                                                            "    quays {" +
-                                                            "      id" +
-                                                            "       name {" +
-                                                            "          value" +
-                                                            "        }" +
-                                                            "      geometry {" +
-                                                            "        type" +
-                                                            "        legacyCoordinates" +
-                                                            "      }" +
-                                                            "    }" +
-                                                            "    }" +
-                                                            "  }";
 }
