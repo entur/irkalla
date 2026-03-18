@@ -45,10 +45,14 @@ public class GraphQLStopPlaceDao implements StopPlaceDao {
     @Value("${tiamat.graphql.path:/services/stop_places/graphql}")
     private String tiamatGraphQLPath;
 
+    private final RestTemplate restTemplate;
+
+    public GraphQLStopPlaceDao(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
 
     @Override
     public StopPlaceChange getStopPlaceChange(CrudAction crudAction, String id, Long version) {
-        RestTemplate restTemplate = new RestTemplate();
         StopPlaceResponse rsp =
                 restTemplate.exchange(tiamatUrl + tiamatGraphQLPath, HttpMethod.POST, createQueryHttpEntity(id, version), StopPlaceResponse.class).getBody();
 

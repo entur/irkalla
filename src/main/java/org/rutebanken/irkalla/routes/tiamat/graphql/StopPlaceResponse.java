@@ -32,12 +32,10 @@ public class StopPlaceResponse {
     }
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    public class Data {
+    public static class Data {
         public List<StopPlace> current;
 
-
         public List<StopPlace> previous;
-
     }
 
 
