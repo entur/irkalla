@@ -1,0 +1,8 @@
+kube_namespace            = "irkalla"
+pubsub_project            = "ent-irkalla-prd"
+storage_project           = "ent-irkalla-prd"
+location                  = "europe-west1"
+bucket_instance_suffix    = "prd"
+tiamat-changelog-topic    = "projects/ent-tiamat-prd/topics/ror.tiamat.changelog"
+crud_event_pubsub_project = "ent-nabu-prd"
+service_account           = "serviceAccount:application@ent-irkalla-prd.iam.gserviceaccount.com"

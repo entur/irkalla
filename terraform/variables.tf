@@ -1,6 +1,6 @@
 variable "bucket_instance_prefix" {
   description = "A prefix for the bucket instance, may be changed if environment is destroyed and then needed again (name collision workaround) - also bucket names must be globally unique"
-  default = "ror-irkalla"
+  default     = "ror-irkalla"
 }
 variable "bucket_instance_suffix" {
   description = "A suffix for the bucket instance, may be changed if environment is destroyed and then needed again (name collision workaround) - also bucket names must be globally unique"
@@ -43,7 +43,7 @@ variable "pubsub_project" {
 
 variable "kube_namespace" {
   description = "The Kubernetes namespace"
-  default = "irkalla"
+  default     = "irkalla"
 }
 
 variable "tiamat-changelog-topic" {
@@ -56,7 +56,7 @@ variable "crud_event_pubsub_project" {
 
 variable "crud_event_pubsub_topic" {
   description = "topic name of crud event queue"
-  default = "CrudEventQueue"
+  default     = "CrudEventQueue"
 
 }
 variable "service_account" {
@@ -64,5 +64,5 @@ variable "service_account" {
 }
 variable "crud_event_pusub_role" {
   description = "pubsub role for crud events topic "
-  default = "roles/pubsub.publisher"
+  default     = "roles/pubsub.publisher"
 }
