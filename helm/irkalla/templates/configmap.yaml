@@ -86,3 +86,5 @@ metadata:
   namespace: irkalla
   labels:
     {{- include "irkalla.labels" . | indent 4 }}
+  annotations:
+    {{- include "irkalla.annotations" . | indent 4 }}
