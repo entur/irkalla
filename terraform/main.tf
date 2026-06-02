@@ -97,12 +97,3 @@ resource "google_pubsub_subscription" "tiamat-changelog-subscription" {
   project = var.pubsub_project
 }
 
-# Add publisher role crudEventQueue
-
-resource "google_pubsub_topic_iam_member" "nabu_topic_iam_member" {
-  project = var.crud_event_pubsub_project
-  member  = var.service_account
-  role    = var.crud_event_pusub_role
-  topic   = var.crud_event_pubsub_topic
-}
-

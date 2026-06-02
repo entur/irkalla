@@ -49,20 +49,3 @@ variable "kube_namespace" {
 variable "tiamat-changelog-topic" {
   description = "Tiamat stop-place changelog"
 }
-
-variable "crud_event_pubsub_project" {
-  description = "project name of crud event pubsub topic"
-}
-
-variable "crud_event_pubsub_topic" {
-  description = "topic name of crud event queue"
-  default     = "CrudEventQueue"
-
-}
-variable "service_account" {
-  description = "default service account of application"
-}
-variable "crud_event_pusub_role" {
-  description = "pubsub role for crud events topic "
-  default     = "roles/pubsub.publisher"
-}
