@@ -23,6 +23,8 @@ metadata:
   namespace: irkalla
   labels:
     {{- include "irkalla.labels" . | indent 4 }}
+  annotations:
+    {{- include "irkalla.annotations" . | indent 4 }}
 rules:
   - apiGroups: [""] # "" indicates the core API group
     resources: ["services", "pods", "endpoints"]
