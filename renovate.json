@@ -3,5 +3,19 @@
     "github>entur/ror-renovate-config"
   ],
   "baseBranch": "master",
-  "separateMinorPatch": true
+  "separateMinorPatch": true,
+  "packageRules": [
+    {
+      "description": "Camel does not follow SemVer: minor releases may contain breaking changes. Keep them out of the aggregated non-major PR and require manual review, so that only Camel patch releases are automerged.",
+      "matchPackageNames": [
+        "org.apache.camel:**",
+        "org.apache.camel.springboot:**"
+      ],
+      "matchUpdateTypes": [
+        "minor"
+      ],
+      "groupName": "Apache Camel minor",
+      "automerge": false
+    }
+  ]
 }
