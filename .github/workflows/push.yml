@@ -33,19 +33,19 @@ jobs:
           path: target/*.jar
   docker-lint:
     needs: [ maven-verify ]
-    uses: entur/gha-docker/.github/workflows/lint.yml@v1.12.0
+    uses: entur/gha-docker/.github/workflows/lint.yml@v1.13.0
     with:
      ignore: "DL3018"
   docker-build:
     needs: [maven-verify]
-    uses: entur/gha-docker/.github/workflows/build.yml@v1.12.0
+    uses: entur/gha-docker/.github/workflows/build.yml@v1.13.0
     with:
       build_artifact_name: artifact
       build_artifact_path: target
   docker-push:
     if: github.repository_owner == 'entur' && github.event_name == 'push'
     needs: [docker-build]
-    uses: entur/gha-docker/.github/workflows/push.yml@v1.12.0
+    uses: entur/gha-docker/.github/workflows/push.yml@v1.13.0
   docker-scan:
       needs: [ docker-build ]
       uses: entur/gha-security/.github/workflows/docker-scan.yml@v2.16.0
