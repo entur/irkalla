@@ -56,7 +56,7 @@ jobs:
     uses: entur/gha-docker/.github/workflows/push.yml@v1.13.0
   docker-scan:
       needs: [ docker-build ]
-      uses: entur/gha-security/.github/workflows/docker-scan.yml@v2.17.0
+      uses: entur/gha-security/.github/workflows/docker-scan.yml@v2.17.1
       with:
         image_artifact: ${{ needs.docker-build.outputs.image_artifact }}
 
