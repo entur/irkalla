@@ -35,7 +35,8 @@ common:
     enabled: false
   configmap:
     data:
-      JDK_JAVA_OPTIONS: -server -Xmx950m -Dspring.config.location=/etc/application-config/application.properties -Dfile.encoding=UTF-8
+      # -XX:-UseBASE64Intrinsics: temporary Java4Shell (CVE-2026-114938) mitigation; remove once the base image has a patched JDK
+      JDK_JAVA_OPTIONS: -server -Xmx950m -Dspring.config.location=/etc/application-config/application.properties -Dfile.encoding=UTF-8 -XX:-UseBASE64Intrinsics
       TZ: Europe/Oslo
     enabled: true
     toEnv: true
